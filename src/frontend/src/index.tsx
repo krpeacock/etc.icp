@@ -1,8 +1,5 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
+import { ReactElement } from "react";
 import { etc } from "./actor";
-import App from "./App";
-
 
 const render404 = () => {
   const div = document.createElement("div");
@@ -37,9 +34,16 @@ if (
       render404();
     });
 } else {
+  loadApp();
+}
+
+async function loadApp() {
+  const react = await import("react");
+  const ReactDOM = await import("react-dom/client");
+  const App = await (await import("./App")).default;
+
   const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
   );
-  root.render(<App />);
+  root.render(react.createElement(App, {}));
 }
-

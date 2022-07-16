@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import { useState } from "react";
 import { etc } from "./actor";
+import CopyButton from "./CopyButton";
 
 type ShortenedPair = { url: string; shortened: string };
 
@@ -13,7 +14,6 @@ const Shortener = () => {
     e.preventDefault();
 
     if (pending) return;
-    // TODO: handle logic
     const text = (
       (e.target as HTMLFormElement).querySelector("input") as HTMLInputElement
     ).value;
@@ -38,6 +38,7 @@ const Shortener = () => {
     } catch (error) {
       console.error(error);
       setErrorMessage("Invalid URL");
+      document.querySelector<HTMLInputElement>("#url")?.focus?.();
       return false;
     }
 
@@ -51,18 +52,35 @@ const Shortener = () => {
 
   return (
     <section>
-      Enter the link you would like shortened
-      <form action="" aria-disabled={pending} onSubmit={handleSubmit}>
-        <input type="text" disabled={pending} />
+      <form
+        id="shortener-form"
+        action=""
+        aria-disabled={pending}
+        onSubmit={handleSubmit}
+      >
+        <label htmlFor="url" id="url-label">
+          <span>Enter the link you would like shortened</span>
+          <input
+            type="text"
+            id="url"
+            name="url"
+            autoFocus={true}
+            disabled={pending}
+            onChange={() => {
+              setErrorMessage("");
+            }}
+          />
+        </label>
         {errorMessage ? <p>{errorMessage}</p> : null}
         <button type="submit" disabled={pending}>
           Submit
         </button>
       </form>
       {pair ? (
-        <div>
+        <section id="output">
           Your custom shortened URL is <a href={link}>{link}</a>
-        </div>
+          <CopyButton text={link} />
+        </section>
       ) : null}
     </section>
   );
