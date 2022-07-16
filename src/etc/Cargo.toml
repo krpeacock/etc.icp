@@ -1,0 +1,17 @@
+[package]
+name = "etc"
+version = "0.1.0"
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+candid = "0.7.15"
+ic-cdk = "0.5"
+ic-cdk-macros = "0.5"
+sha2 = "^0.9" 
+ic-certified-map = "0.3"
+hex = "0.4"

@@ -1,0 +1,19 @@
+{
+  "canisters": {
+    "etc": {
+      "candid": "src/etc/etc.did",
+      "package": "etc",
+      "type": "rust"
+    },
+    "frontend": {
+      "dependencies": [
+        "etc"
+      ],
+      "source": [
+        "dist/"
+      ],
+      "type": "assets"
+    }
+  },
+  "version": 1
+}

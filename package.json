@@ -1,0 +1,42 @@
+{
+  "name": "etc_assets",
+  "version": "1.0.0",
+  "description": "Internet Computer starter application",
+  "keywords": [
+    "Internet Computer",
+    "Motoko",
+    "JavaScript",
+    "Canister"
+  ],
+  "scripts": {
+    "build": "NODE_ENV=production parcel build src/frontend/index.html",
+    "prebuild": "npm run generate",
+    "prestart": "node setupEnv.js",
+    "start": "parcel src/frontend/index.html",
+    "dev": "parcel src/frontend/index.html",
+    "predev": "dfx start --background --clean; dfx deploy etc; npm run generate;",
+    "postdev": "dfx stop",
+    "generate": "node setupEnv.js; dfx generate etc;"
+  },
+  "devDependencies": {
+    "@dfinity/agent": "0.12.1",
+    "@dfinity/candid": "0.12.1",
+    "@dfinity/principal": "0.12.1",
+    "@types/react": "^18.0.15",
+    "buffer": "^6.0.3"
+  },
+  "engines": {
+    "node": "^12 || ^14 || ^16 || ^18"
+  },
+  "browserslist": [
+    "last 2 chrome version",
+    "last 2 firefox version",
+    "last 2 safari version",
+    "last 2 edge version"
+  ],
+  "dependencies": {
+    "parcel": "^2.4.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
